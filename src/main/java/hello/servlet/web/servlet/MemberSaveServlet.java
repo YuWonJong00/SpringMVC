@@ -22,6 +22,7 @@ public class MemberSaveServlet extends HttpServlet {
 
 
 
+
         int age = Integer.parseInt(request.getParameter("age"));
 
 
