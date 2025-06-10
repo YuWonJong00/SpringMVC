@@ -53,7 +53,7 @@ w.write("    </tr>");
 
 
 
-        for (Member member : members) //로직
+        for (Member member : members) //for로직
         {
             w.write("    <tr>");
             w.write("        <td>" + member.getId() + "</td>");
