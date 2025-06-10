@@ -23,6 +23,7 @@ public class MemberSaveServlet extends HttpServlet {
 
         int age = Integer.parseInt(request.getParameter("age"));
 
+
         Member member = new Member(username, age);
         memberRepository.save(member);
 
