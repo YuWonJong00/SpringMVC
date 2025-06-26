@@ -14,6 +14,10 @@ import java.io.IOException;
 
 @Slf4j
 @Controller
+<<<<<<< HEAD
+=======
+
+>>>>>>> c67440d (RequestBody)
 public class ResponseBodyController {
     @GetMapping("/response-body-v1")
     public void responseBodyV1(HttpServletResponse response) throws IOException {
