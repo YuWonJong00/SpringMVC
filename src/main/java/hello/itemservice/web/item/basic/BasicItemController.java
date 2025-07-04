@@ -5,9 +5,7 @@ import hello.itemservice.domain.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +31,52 @@ public class BasicItemController {
     @GetMapping("/add")
     public String addForm() {
         return "basic/addForm";
+    }
+    //@PostMapping("/add")
+    public String addItemV1(@RequestParam("itemName")String itemName,
+                            @RequestParam("price")int price,
+                            @RequestParam("quantity")Integer quantity,
+                            Model model){
+        Item item=new Item();
+        item.setItemName(itemName);
+        item.setPrice(price);
+        item.setQuantity(quantity);
+
+        itemRepository.save(item);
+
+        model.addAttribute("item", item);
+        return "basic/item";
+    }
+    // @PostMapping("/add")
+    public String addItemV2(@ModelAttribute("item")Item item
+    ){
+
+        itemRepository.save(item);
+
+        // model.addAttribute("item", item); //modelattribute가 자동으로 넣어줌 이름은 파라미터에 있는 이름으로 똑같이 넣어줌
+        return "basic/item";
+    }
+    //  @PostMapping("/add")
+    public String addItemV3(@ModelAttribute()Item item,Model model
+    ){
+        //ModelAttribute의 이름 ""을 안 넣어주면 클래스 이름의 첫글자를 소문자로 바꾼 후 이를 이름으로 사용 Item -> item
+        itemRepository.save(item);
+
+
+        return "basic/item";
+    }
+    // @PostMapping("/add")
+    public String addItemV4(Item item){
+
+        itemRepository.save(item);
+
+        // model.addAttribute("item", item); //modelattribute가 자동으로 넣어줌 이름은 파라미터에 있는 이름으로 똑같이 넣어줌
+        return "basic/item";
+    }
+    public String addItemV5(Item item){
+
+        itemRepository.save(item);
+
+        return "redirection:basic/items" + item.getId();
     }
 }
